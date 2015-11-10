@@ -9,6 +9,16 @@
   opacity: 1;
 }
 
+#input {
+  position: absolute;
+  width:100%;
+  height:100%;
+}
+
+#input {
+  outline: 0;
+}
+
 .input {
   width: 100%;
   color: #F8F8F2;
@@ -29,4 +39,8 @@ body {
   color: #F8F8F2;
   font-family: "Lucida Console", Monaco, monospace;
   font-size: 14px;
+}
+
+.typed {
+  color: chartreuse;
 }

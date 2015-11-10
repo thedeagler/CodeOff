@@ -1,27 +1,46 @@
 angular.module('codeOff.game', [])
 
-.controller('gameCtrl', ['$scope', '$document', function ($scope, $document) {
-  $scope.input = 'Start typing here.';
+.controller('gameCtrl', ['$scope', '$document', function ($scope, $document) { 
+  $scope.input = $scope.text;
+  $scope.incorrect = {};
+  
   $scope.text = 'Readymade +1 echo park pork belly XOXO. Tote bag kogi gentrify, blue bottle forage artisan cred butcher 8-bit. DIY cred hashtag, bushwick occupy echo park messenger bag quinoa irony pop-up mlkshk. Chia you probably haven\'t heard of them kitsch DIY tacos. Master cleanse irony microdosing, art party tattooed twee before they sold out deep v skateboard mustache. Vice master cleanse fixie, wayfarers single-origin coffee salvia scenester squid microdosing plaid organic listicle fingerstache. Leggings mumblecore gastropub, letterpress cliche hashtag celiac.';
+  $scope.typed = [];
+  $scope.toType = $scope.text.split('');
   $scope.pos = 0;
 
   $document.on('keydown', function(e) {
     if(e.keyCode) {
+      // Backspace
       if(e.keyCode === 8) {
         e.preventDefault();
-        console.log('delete')
-        $scope.input = $scope.input.substring(0, $scope.input.length - 1);
-        $scope.pos--;
+      }
+      // Super
+      else if (e.keyCode === 93 || e.keyCode === 91) {
+        e.preventDefault();
       }
     }
-  })
+  });
 
   $scope.keyCheck = function(e) {
-    $scope.input += String.fromCharCode(e.charCode);
-
-    console.log(String.fromCharCode(e.charCode) === $scope.text.charAt($scope.pos));
-    $scope.pos++;
+    // If typed letter is correct, add the letter to the "typed" array
+    if(String.fromCharCode(e.charCode) === $scope.toType[0]) {
+      console.log('gotem');
+      $scope.typed.push($scope.toType.shift());
+    }
+    // If typed letter is incorrect, add it to the incorrectly typed letters object
+    else {
+      console.log('nope');
+      if(!!!$scope.incorrect.hasOwnProperty(e.charCode)) {
+        $scope.incorrect[e.charCode] = 1;
+      }
+      else {
+        $scope.incorrect[e.charCode]++;
+      }
+    }
   };
+
+
 }]);
 
     /*shift= 16
