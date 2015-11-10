@@ -18,7 +18,7 @@ angular.module('codeOff.game', [])
 
   $scope.cursor = document.getElementById('cursor');
 
-  var startTime, timer;
+  var startTime, timer, mistakes = 0;
 
   $document.on('keydown', function(e) {
     if(e.keyCode) {
@@ -48,6 +48,7 @@ angular.module('codeOff.game', [])
     // If typed letter is incorrect, add it to the incorrectly typed letters object
     else {
       console.log('nope');
+      mistakes++;
       if ($scope.cursor.classList){
         $scope.cursor.classList.remove('blink');
         $scope.cursor.classList.add('shake');
@@ -68,6 +69,7 @@ angular.module('codeOff.game', [])
       }
     }
 
+    $scope.stats.acc = (($scope.typed.length - mistakes) / $scope.typed.length) * 100;
     timer = window.requestAnimationFrame(calc);
   };
 
