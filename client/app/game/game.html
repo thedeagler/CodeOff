@@ -1,22 +1,7 @@
-<div id='game_area'>
-  <!-- <input class='input' type='text' ng-model='inputBox' ng-keydown='keyCheck(inputBox)' placeholder='Start typing here!' /> -->
-  <div autofocus id='input' ng-click="input = ' ';" tabindex='2' ng-keypress='keyCheck($event)'></div>
+<div id='game_area'><!-- 
+   --><div autofocus id='input' tabindex='1' ng-keypress='keyCheck($event)'></div><!-- 
 
-  <span class='typed'>{{ typed.join('') }}</span><span class='to_type'>{{ toType.join('') }}</span>
-  <!-- <div>{{ text }}</div> -->
+   --><span class='typed'>{{ typed.join('') }}</span><!-- 
+   --><span class='blink' id='cursor' >|</span><!-- 
+   --><span class='untyped'>{{ untyped.join('') }}</span>
 </div>
-<!-- <input type='text' ng-model='search' placeholder='filter' />
-<div class="links">
-  <div class="link"
-      ng-repeat="link in data.links | filter:search | orderBy:'created_at'">
-    <img src="assets/redirect_icon.png">
-    <div class="info">
-      <div class="visits">
-        <span class="count">{{ link.visits }}</span>Visits
-      </div>
-      <div class="title">{{ link.title }}</div>
-      <div class="original">{{ link.url }}</div>
-      <a>{{ link.base_url }}/{{ link.code }}</a>
-    </div>
-  </div>
-  </div> -->

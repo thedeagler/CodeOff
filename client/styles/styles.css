@@ -1,3 +1,10 @@
+body {
+  background-color: #272822;
+  color: #F8F8F2;
+  font-family: "Lucida Console", Monaco, monospace;
+  font-size: 14px;
+}
+
 #game_area {
   width:100%;
   height:100%;
@@ -19,7 +26,48 @@
   outline: 0;
 }
 
-.input {
+.typed {
+  color: chartreuse;
+}
+
+.untyped {
+  opacity: .4;
+}
+
+#cursor {
+  color: chartreuse;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight 100;
+  font-size: 16px;
+}
+
+.blink {
+  animation: blink 0.85s ease-out infinite;
+}
+
+.shake {
+  opacity: 1 !important;
+  color: tomato !important;
+  animation: shake 0.15s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes blink {  
+  40% { opacity: 0.2; }
+}
+
+@keyframes shake {
+  20%, 80% {
+    transform: translate3d(-2px, 0, 0);
+  }
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+/*.input {
   width: 100%;
   color: #F8F8F2;
   font-size: 14px;
@@ -32,15 +80,4 @@
 .input:focus {
   outline: 0;
   opacity: 1;
-}
-
-body {
-  background-color: #272822;
-  color: #F8F8F2;
-  font-family: "Lucida Console", Monaco, monospace;
-  font-size: 14px;
-}
-
-.typed {
-  color: chartreuse;
-}
+}*/
