@@ -3,6 +3,8 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
+    clean: ["build"],
+
     concat: {
       options: {
         separator: ';'
@@ -16,8 +18,8 @@ module.exports = function(grunt) {
         dest: 'build/lib.js'
       },
       css: {
-        src: ['client/styles/*.js'],
-        dest: 'build/styles.js'
+        src: ['client/styles/*.css'],
+        dest: 'build/styles.css'
       },
     },
 
@@ -76,7 +78,7 @@ module.exports = function(grunt) {
         tasks: ['concat:lib', 'uglify']
       },
       css: {
-        files: 'client/styles.min.css',
+        files: 'client/styles/*.css',
         tasks: ['concat:css', 'cssmin']
       }
     },
@@ -94,6 +96,7 @@ module.exports = function(grunt) {
     // },
   });
 
+  grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
@@ -120,7 +123,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('test', ['jshint']);
 
-  grunt.registerTask('build', ['concat', 'uglify', 'cssmin']);
+  grunt.registerTask('build', ['clean', 'concat', 'uglify', 'cssmin']);
 
   // grunt.registerTask('upload', function(n) {
   //   if(grunt.option('prod')) {
