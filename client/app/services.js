@@ -1,9 +1,19 @@
 angular.module('codeOff.services', [])
-.factory()
+.factory('Player',['$http', function($http) {
+  var ready = function(playerData) {
+    return $http({
+      method: 'POST',
+      url: '/game/join',
+      data: playerData
+    });
+  };
+
+  return {
+    ready: ready
+  };
+}])
 // Get some factories bruh
 // .factory('Links', function ($http) {
-//   // Your code here
-
 //   var getAll = function () {
 //     return $http({
 //       method: 'GET',

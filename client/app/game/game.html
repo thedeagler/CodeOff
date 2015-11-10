@@ -1,13 +1,23 @@
-<div autofocus id='game_area' tabindex='1' ng-keypress='keyCheck($event)'><!-- 
+<div id='game_container' class=''>
+  <div autofocus id='game_area' tabindex='1' ng-click='init()' ng-keypress='keyCheck($event)'><!-- 
+    --><span class='typed'>{{ typed.join('') }}</span><!-- 
+    --><span class='blink' id='cursor' >{{ current[0] }}</span><!-- 
+    --><span class='untyped'>{{ untyped.join('') }}</span>
+  </div>
 
-  --><pre class='typed'>{{ typed.join('') }}</pre><!-- 
-  --><pre class='blink' id='cursor' >{{ current[0] }}</pre><!-- 
-  --><pre class='untyped'>{{ untyped.join('') }}</pre>
+  <div id='timer'>30s</div>
+  <div ng-if='gameOver' id='end_stats'>
+    <div>{{ stats.cpm.toFixed(3) }} characters per minute</div>
+    <div>{{ stats.acc.toFixed(3) }}% accuracy</div>
+  </div>
 
-</div>
+  <div id='dashboard'>
+    <span id='cpm'></span>
+    <span id='acc'>{{ stats.acc.toFixed(3) }}</span>
+    <span id='incorrect'>
+      <div>Missed Characters</div>
+      <div ng-repeat='(lett, count) in stats.incorrect'>{{ lett }} : {{ count }}</div>
+    </span>
+  </div>
 
-<div id='dashboard'>
-  <span id='cpm'>{{ stats.cpm }}</span>
-  <span id='acc'>{{ stats.acc }}%</span>
-  <span id='incorrect'>{{ stats.incorrect }}</span>
 </div>

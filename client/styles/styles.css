@@ -8,6 +8,9 @@ body {
 pre {
   display: inline;
 }
+.game_container {
+
+}
 
 #dashboard {
   background-color: black;
@@ -20,13 +23,30 @@ pre {
   text-align: center;
 }
 
+#incorrect {
+  color: tomato;
+  position: fixed;
+  right: 0;
+  top: 0;
+}
+
 #game_area {
   width:49em;
   border-right: 1px papayawhip dotted;
+  white-space: pre-wrap;
+  float: left;
 }
 
 #game_area:focus {
   outline: 0;
+}
+
+#end_stats {
+  color: chartreuse;
+}
+
+#timer {
+  color: papayawhip;
 }
 
 .typed {
@@ -50,6 +70,11 @@ pre {
   opacity: 1 !important;
   color: tomato !important;
   animation: shake 0.15s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+.blur {
+  color: transparent !important;
+  text-shadow: 0 0 5px papayawhip !important;
 }
 
 @keyframes blink {  
