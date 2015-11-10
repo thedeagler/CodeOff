@@ -1,11 +1,10 @@
 angular.module('codeOff.game', [])
 
-.controller('gameCtrl', ['$scope', '$document', function ($scope, $document) { 
+.controller('gameCtrl', ['$scope', '$document',
+function ($scope, $document) { 
   // Controller vars
   var texts = [
-'for(var i = 0; i < 10; i++) {\n\
-  console.log(i);\n\
-}',
+'for(var i = 0; i < 10; i++) {\n  console.log(i);\n}',
 
 '// If typed letter is correct, add the letter to the "typed" array\n\
 if(entered === $scope.current) {\n\
@@ -66,9 +65,9 @@ else {\n\
   };\n\
 })'
 ];
-  var gameTime = 30000;
+  var gameTime = 60000;
   // var sample = texts[Math.floor(Math.random() * 3)];
-  var sample = texts[3];
+  var sample = texts[0];
   var startTime, timer, mistakes = 0;
   var cursor = document.getElementById('cursor');
   
@@ -174,10 +173,10 @@ else {\n\
   function calc(time) {
     $scope.stats.cpm = $scope.typed.length / (time - startTime) * 60000;
     document.getElementById('cpm').innerText = $scope.stats.cpm;
-    document.getElementById('timer').innerText = time > gameTime ? 'finished!' : ((gameTime - time) / 1000).toFixed(3) + 's';
+    document.getElementById('timer').innerText = $scope.gameOver ? 'finished!' : ((gameTime - time) / 1000).toFixed(3) + 's';
 
     // Game end condition ()
-    if(time >= gameTime) {
+    if(time >= gameTime || $scope.typed.length === sample.length) {
       $scope.gameOver = true;
       window.cancelAnimationFrame(timer);
     }

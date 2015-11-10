@@ -1,15 +1,21 @@
 angular.module('codeOff', [
+  'codeOff.services',
   'codeOff.game',
+  'codeOff.select',
   'ngRoute'
 ])
 .config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
   $routeProvider
-    .when('/game', {
+    .when('/play', {
       templateUrl: 'app/game/game.html',
       controller: 'gameCtrl'
     })
+    .when('/select', {
+      templateUrl: 'app/select/select.html',
+      controller: 'selectCtrl'
+    })
     .otherwise({
-      redirectTo: '/game'
+      redirectTo: '/select'
     });
     
     // We add our $httpInterceptor into the array

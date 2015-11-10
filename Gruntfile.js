@@ -10,7 +10,7 @@ module.exports = function(grunt) {
         separator: ';'
       },
       scripts: {
-        src: ['client/app/*.js'],
+        src: ['client/app/**/*.js', 'client/app/services.js', 'client/app/app.js'],
         dest: 'build/scripts.js'
       },
       lib: {
@@ -123,7 +123,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('test', ['jshint']);
 
-  grunt.registerTask('build', ['clean', 'concat', 'uglify', 'cssmin']);
+  grunt.registerTask('doit', ['test', 'clean', 'concat', 'uglify', 'cssmin']);
 
   // grunt.registerTask('upload', function(n) {
   //   if(grunt.option('prod')) {
@@ -133,5 +133,5 @@ module.exports = function(grunt) {
   //   }
   // });
 
-  grunt.registerTask('default', ['test', 'build', 'watch']);
+  grunt.registerTask('default', ['test', 'doit', 'watch']);
 };
