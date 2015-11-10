@@ -1,7 +1,13 @@
-<div id='game_area'><!-- 
-   --><div autofocus id='input' tabindex='1' ng-keypress='keyCheck($event)'></div><!-- 
+<div autofocus id='game_area' tabindex='1' ng-keypress='keyCheck($event)'><!-- 
 
-   --><span class='typed'>{{ typed.join('') }}</span><!-- 
-   --><span class='blink' id='cursor' >|</span><!-- 
-   --><span class='untyped'>{{ untyped.join('') }}</span>
+  --><pre class='typed'>{{ typed.join('') }}</pre><!-- 
+  --><pre class='blink' id='cursor' >{{ current }}</pre><!-- 
+  --><pre class='untyped'>{{ untyped.join('') }}</pre>
+
+</div>
+
+<div id='dashboard'>
+  <span id='cpm'>{{ stats.cpm }}</span>
+  <span id='acc'>{{ stats.acc }}</span>
+  <span id='incorrect'>{{ stats.incorrect }}</span>
 </div>

@@ -1,14 +1,24 @@
 angular.module('codeOff.game', [])
 
 .controller('gameCtrl', ['$scope', '$document', function ($scope, $document) { 
-  $scope.text = 'Readymade +1 echo park pork belly XOXO. Tote bag kogi gentrify, blue bottle forage artisan cred butcher 8-bit. DIY cred hashtag, bushwick occupy echo park messenger bag quinoa irony pop-up mlkshk. Chia you probably haven\'t heard of them kitsch DIY tacos. Master cleanse irony microdosing, art party tattooed twee before they sold out deep v skateboard mustache. Vice master cleanse fixie, wayfarers single-origin coffee salvia scenester squid microdosing plaid organic listicle fingerstache. Leggings mumblecore gastropub, letterpress cliche hashtag celiac.';
+  var text = 
+'for(var i = 0; i < 10; i++) {\n\
+  console.log(i);\n\
+}';
+  // var text = '--------------------------------------------------------------------------------';
   
-  $scope.incorrect = {};
+  $scope.stats = {
+    incorrect: {},
+    cpm: 0,
+    acc: 100
+  };
   $scope.typed = [];
-  $scope.untyped = $scope.text.split('');
-  $scope.pos = 0;
+  $scope.untyped = text.split('');
+  $scope.current = $scope.untyped.shift();
 
   $scope.cursor = document.getElementById('cursor');
+
+  var startTime = new Date();
 
   $document.on('keydown', function(e) {
     if(e.keyCode) {
@@ -24,10 +34,12 @@ angular.module('codeOff.game', [])
   });
 
   $scope.keyCheck = function(e) {
+    var entered = e.charCode === 13 ? '\n' : String.fromCharCode(e.charCode);
     // If typed letter is correct, add the letter to the "typed" array
-    if(String.fromCharCode(e.charCode) === $scope.untyped[0]) {
+    if(entered === $scope.current) {
       console.log('gotem');
-      $scope.typed.push($scope.untyped.shift());
+      $scope.typed.push($scope.current);
+      $scope.current = $scope.untyped.shift();
     }
     // If typed letter is incorrect, add it to the incorrectly typed letters object
     else {
@@ -43,17 +55,25 @@ angular.module('codeOff.game', [])
       else {
         $scope.cursor.className += ' ' + 'shake';
       }
-      if(!!!$scope.incorrect.hasOwnProperty(e.charCode)) {
-        $scope.incorrect[e.charCode] = 1;
+
+      if(!!!$scope.stats.incorrect.hasOwnProperty($scope.current)) {
+        $scope.stats.incorrect[$scope.current] = 1;
       }
       else {
-        $scope.incorrect[e.charCode]++;
+        $scope.stats.incorrect[$scope.current]++;
       }
     }
+
+    
   };
 
 
 }]);
+
+function calc(time) {
+
+  window.requestAnimationFrame(calc);
+}
 
     /*shift= 16
     ctrl = 17

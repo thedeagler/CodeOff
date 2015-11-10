@@ -16,6 +16,6 @@ app.use(express.static(__dirname + '/client'));
 // })
 
 app.listen(port);
-console.log('server listening on port:', port, 'at', new Date());
+console.log('server listening on port:', port, 'at', (new Date()).getMinutes());
 
 module.exports = app;
