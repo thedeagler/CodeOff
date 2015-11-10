@@ -18,7 +18,7 @@ angular.module('codeOff.game', [])
 
   $scope.cursor = document.getElementById('cursor');
 
-  var startTime = new Date();
+  var startTime, timer;
 
   $document.on('keydown', function(e) {
     if(e.keyCode) {
@@ -34,6 +34,10 @@ angular.module('codeOff.game', [])
   });
 
   $scope.keyCheck = function(e) {
+    if(!!!$scope.typed.length) {
+      startTime = performance.now()
+    }
+
     var entered = e.charCode === 13 ? '\n' : String.fromCharCode(e.charCode);
     // If typed letter is correct, add the letter to the "typed" array
     if(entered === $scope.current) {
@@ -64,16 +68,23 @@ angular.module('codeOff.game', [])
       }
     }
 
-    
+    timer = window.requestAnimationFrame(calc);
   };
 
-
+  function calc(time) {
+    $scope.stats.cpm = $scope.typed.length / (time - startTime) * 60000;
+    document.getElementById('cpm').innerText = $scope.stats.cpm;
+    console.log($scope.stats.cpm);
+    if(!!!$scope.untyped.length) {
+      window.cancelAnimationFrame(timer);
+      console.log('Done! Final characters per min:', $scope.stats.cpm);
+    }
+    else {
+      window.requestAnimationFrame(calc);
+    }
+  }
 }]);
 
-function calc(time) {
-
-  window.requestAnimationFrame(calc);
-}
 
     /*shift= 16
     ctrl = 17
