@@ -43,6 +43,8 @@ app.post('/join', function(req, res) {
     rooms[req.body.room].notReady[req.body.user] = player.color;
   }
   else {
+    // Init room if doesnt exist
+    rooms[req.body.room] = { notReady: {}, ready: {} };
     rooms[req.body.room].notReady[req.body.user] = player.color;
     rooms[req.body.room].ready = [];
   }

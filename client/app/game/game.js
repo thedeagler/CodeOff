@@ -6,8 +6,14 @@ function ($rootScope, $scope, $document, Player) {
   var gameTime = 60000;
   var sample = $rootScope.sample;
   var startTime, timer, mistakes = 0;
+  var myColor = $rootScope.myColor;
   var cursor = document.getElementById('cursor');
-  
+
+  // Set custom player colors
+  cursor.style.color = myColor;
+  cursor.style.borderBottom = '1px solid ' + myColor;
+  document.getElementById('before').style.color = myColor;
+
   // Scope vars
     // Game vars
   $scope.gameOver = false;
