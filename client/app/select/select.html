@@ -1,13 +1,19 @@
-<style type="text/css">
-  #picker { width: 200px; height: 200px }
-  #slide { width: 30px; height: 200px }
-</style>
-
 <div id='select_container' class=''>
   <span>Enter a username: </span>
-  <input placeholder = '1337_c0d312' />
-  <div>Select a color</div>
+  <input placeholder='1337_k0d3r' ng-model='username' maxlength='10' required/>
+  <br>
+  <span>Enter a Room: </span>
+  <input placeholder='(optional)' ng-model='room' maxlength='10' />
+  <div id='player-color'>Select a color</div>
+  <div class="color_picker">
+    <div id="picker"></div>
+    <div id="slide"></div>    
+  </div>
+</div>
 
-  <div id="picker"></div>
-  <div id="slide"></div>
+<div id='submit' ng-click='play()'>
+  <div id='user'>{{ username }}</div>
+  <div id='room' ng-if='(username && colorHex)'>Play!</div>
+  <div id='play' ng-if='(room)'>{{ room }}</div>
+  <div id='color'>{{ colorHex }}</div>
 </div>

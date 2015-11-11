@@ -49,17 +49,60 @@ pre {
   color: papayawhip;
 }
 
+#cursor {
+  color: darkturquoise;
+  border-bottom: 1px solid darkturquoise;
+}
 .typed {
   color: darkturquoise;
+}
+
+#picker, #slide {
+  height:100px;
+  width: 100px;
+  cursor: crosshair;
+}
+
+#slide { width: 10px }
+
+#submit {
+  position: fixed;
+  display: inline-block;
+  text-align: center;
+  height: 96px;
+  width: 100px;
+  border: 2px solid;
+  border-radius: 5px;
+  top: 50%;
+  left: 50%;
+  margin-top: -100px;
+  margin-left: -250px;
+  cursor: pointer;
+}
+
+#play {
+  position: relative;
+  text-align: bottom;
+  top: 37px;
+}
+
+#user {
+  position: relative;
+  top: 0;
+}
+
+#color {
+  position: relative;
+  bottom: 0;
 }
 
 .untyped {
   opacity: .4;
 }
 
-#cursor {
-  color: darkturquoise;
-  border-bottom: 1px solid darkturquoise;
+.color_picker, .color_picker > * {
+  display:inline-block;
+  float: left;
 }
 
 .blink {

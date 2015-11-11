@@ -5,35 +5,26 @@ angular.module('codeOff.services', [])
       method: 'POST',
       url: '/game/join',
       data: playerData
+    })
+    .then(function (sample) {
+      return sample;
+    });
+  };
+
+  var register = function(playerData) {
+    return $http({
+      method: 'POST',
+      url: '/sample',
+      data: playerData
+    })
+    .then(function (sample) {
+      // process sample to a stringthing
+      return sample;
     });
   };
 
   return {
-    ready: ready
+    ready: ready,
+    register: register
   };
 }])
-// Get some factories bruh
-// .factory('Links', function ($http) {
-//   var getAll = function () {
-//     return $http({
-//       method: 'GET',
-//       url: '/api/links'
-//     })
-//     .then(function (resp) {
-//       return resp.data;
-//     });
-//   };
-
-//   var addLink = function (link) {
-//     return $http({
-//       method: 'POST',
-//       url: '/api/links',
-//       data: link
-//     });
-//   };
-
-//   return {
-//     getAll: getAll,
-//     addLink: addLink
-//   };
-// })

@@ -3,68 +3,6 @@ angular.module('codeOff.game', [])
 .controller('gameCtrl', ['$scope', '$document',
 function ($scope, $document) { 
   // Controller vars
-  var texts = [
-'for(var i = 0; i < 10; i++) {\n  console.log(i);\n}',
-
-'// If typed letter is correct, add the letter to the "typed" array\n\
-if(entered === $scope.current) {\n\
-  console.log(\'gotem\');\n\
-  $scope.typed.push($scope.current);\n\
-  $scope.current = $scope.untyped.shift();\n\
-}\n\
-// If typed letter is incorrect\n\
-else {\n\
-  console.log(\'nope\');\n\
-  // Increment # of mistakes for accuracy calculation\n\
-  mistakes++;\n\
-  // Shake the cursor\n\
-  if($scope.cursor.classList){\n\
-    $scope.cursor.classList.remove(\'blink\');\n\
-    $scope.cursor.classList.add(\'shake\');\n\
-    window.setTimeout(function() {\n\
-      $scope.cursor.classList.remove(\'shake\');\n\
-      $scope.cursor.classList.add(\'blink\');\n\
-    }, 150);\n\
-  }\n\
-}',
-
-'function calc(time) {\n\
-  $scope.stats.cpm = $scope.typed.length / (time - startTime) * 60000;\n\
-  document.getElementById(\'cpm\').innerText = $scope.stats.cpm;\n\
-  if(!!!$scope.untyped.length) {\n\
-    window.cancelAnimationFrame(timer);\n\
-    console.log(\'Done! Final characters per min:\', $scope.stats.cpm);\n\
-  }\n\
-  else {\n\
-    window.requestAnimationFrame(calc);\n\
-  }\n\
-}',
-
-'.factory(\'Links\', function ($http) {\n\
-  var getAll = function () {\n\
-    return $http({\n\
-      method: \'GET\',\n\
-      url: \'/api/links\'\n\
-    })\n\
-    .then(function (resp) {\n\
-      return resp.data;\n\
-    });\n\
-  };\n\
-\n\
-  var addLink = function (link) {\n\
-    return $http({\n\
-      method: \'POST\',\n\
-      url: \'/api/links\',\n\
-      data: link\n\
-    });\n\
-  };\n\
-\n\
-  return {\n\
-    getAll: getAll,\n\
-    addLink: addLink\n\
-  };\n\
-})'
-];
   var gameTime = 60000;
   // var sample = texts[Math.floor(Math.random() * 3)];
   var sample = texts[0];
@@ -111,7 +49,6 @@ else {\n\
   // Game logic
   $scope.keyCheck = function(e) {
     if(!!!$scope.gameOver) {
-      console.log('textlength:', sample.length, 'typedlength:', $scope.typed.length);
       // Do on first keypress only
       if(!!!$scope.typed.length) {
         startTime = performance.now()
@@ -121,13 +58,11 @@ else {\n\
       var entered = e.charCode === 13 ? '\n' : String.fromCharCode(e.charCode);
       // If typed letter is correct, add the letter to the "typed" array
       if(entered === $scope.current) {
-        console.log('gotem');
         $scope.typed.push($scope.current);
         $scope.current = $scope.untyped.shift();
       }
       // If typed letter is incorrect
       else {
-        console.log('nope');
         // Increment # of mistakes for accuracy calculation
         mistakes++;
         // Shake the cursor
