@@ -1,7 +1,7 @@
 angular.module('codeOff.game', [])
 
-.controller('gameCtrl', ['$rootScope', '$scope', '$document', 'Player',
-function ($rootScope, $scope, $document, Player) { 
+.controller('gameCtrl', ['$rootScope', '$scope', '$document', 'Player', 'socket',
+function ($rootScope, $scope, $document, Player, socket) { 
   // Controller vars
   var gameTime = 60000;
   var sample = $rootScope.sample;
@@ -10,13 +10,16 @@ function ($rootScope, $scope, $document, Player) {
   var cursor = document.getElementById('cursor');
 
   // Set custom player colors
-  cursor.style.color = myColor;
   cursor.style.borderBottom = '1px solid ' + myColor;
-  document.getElementById('before').style.color = myColor;
+  Array.prototype.forEach.call(document.getElementsByClassName('cust-color'),
+  function(el) {
+    el.style.color = myColor;
+  });
 
   // Scope vars
     // Game vars
   $scope.gameOver = false;
+  $scope.username = $rootScope.myUsername;
   $scope.stats = {
     incorrect: {},
     cpm: 0,

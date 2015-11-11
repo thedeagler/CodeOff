@@ -27,8 +27,7 @@ function ($rootScope, $scope, $location, Player) {
     .then(function(sample) {
       $rootScope.myColor = $scope.colorHex;
       $rootScope.sample = sample;
-      // console.log('sample:', sample);
-      // console.log('rootsample:', $rootScope.sample);
+      $rootScope.myUsername = $scope.username;
       $location.path('/play');
     })
     .catch(function(err) {

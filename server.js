@@ -1,9 +1,11 @@
 var express = require('express');
+var app = express();
+var http = require('http').Server(app);
 var bodyParser = require('body-parser');
+var io = require('socket.io')(http);
 
 var port = 8080;
 
-var app = express();
 
 // "Database" of samples, users, and rooms
 var samples = [
@@ -23,16 +25,8 @@ var rooms = {
 };
 
 app.use(bodyParser.json());
-// app.use(function(req, res, next) {
-//   console.log('method:', req.method);
-//   console.log('body:', req.body);
-//   console.log('path:', req.path);
-
-//   next();
-// })
 app.use(express.static(__dirname + '/client'));
 
-  // req.body.user, req.body.color, req.body.room
 app.post('/join', function(req, res) {
   // Handle user
   users[req.body.user] = req.body.color;
@@ -53,12 +47,10 @@ app.post('/join', function(req, res) {
   res.send(sample);
 })
 
-// configure our server with all the middleware and and routing
-// require('./config/middleware.js')(app, express);
-
-// app.get('/', function(req, res) {
-//   res.end('hello');
-// })
+// Sockets!!!
+io.on('connection', function(socket){
+  console.log('a user connected');
+});
 
 app.listen(port);
 console.log('server listening on port:', port, 'at', (new Date()).getMinutes());
