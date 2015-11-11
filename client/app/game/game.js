@@ -1,11 +1,10 @@
 angular.module('codeOff.game', [])
 
-.controller('gameCtrl', ['$scope', '$document',
-function ($scope, $document) { 
+.controller('gameCtrl', ['$rootScope', '$scope', '$document', 'Player',
+function ($rootScope, $scope, $document, Player) { 
   // Controller vars
   var gameTime = 60000;
-  // var sample = texts[Math.floor(Math.random() * 3)];
-  var sample = texts[0];
+  var sample = $rootScope.sample;
   var startTime, timer, mistakes = 0;
   var cursor = document.getElementById('cursor');
   
@@ -41,7 +40,7 @@ function ($scope, $document) {
     }
   });
 
-  $scope.init = function() {
+  $scope.ready = function() {
     $scope.current = $scope.untyped.shift();
     // fire ready signal to server
   }
@@ -108,7 +107,7 @@ function ($scope, $document) {
   function calc(time) {
     $scope.stats.cpm = $scope.typed.length / (time - startTime) * 60000;
     document.getElementById('cpm').innerText = $scope.stats.cpm;
-    document.getElementById('timer').innerText = $scope.gameOver ? 'finished!' : ((gameTime - time) / 1000).toFixed(3) + 's';
+    document.getElementById('timer').innerText = time >= gameTime ? 'finished!' : ((gameTime - time) / 1000).toFixed(3) + 's';
 
     // Game end condition ()
     if(time >= gameTime || $scope.typed.length === sample.length) {

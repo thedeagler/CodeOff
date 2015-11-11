@@ -14,12 +14,12 @@ angular.module('codeOff.services', [])
   var register = function(playerData) {
     return $http({
       method: 'POST',
-      url: '/sample',
+      url: '/join',
       data: playerData
     })
-    .then(function (sample) {
+    .then(function (response) {
       // process sample to a stringthing
-      return sample;
+      return response.data;
     });
   };
 
