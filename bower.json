@@ -1,7 +1,7 @@
 {
   "name": "2015-10-mvp",
   "version": "0.0.0",
-  "homepage": "https://github.com/thedeagler/2015-10-mvp",
+  "homepage": "https://github.com/thedeagler/CodeOff",
   "authors": [
     "Stephen Wu"
   ],
@@ -15,6 +15,7 @@
   ],
   "dependencies": {
     "angular": "1.4.7",
-    "angular-route": "~1.4.7"
+    "angular-route": "~1.4.7",
+    "normalize-css": "normalize.css#~3.0.3",
   }
 }

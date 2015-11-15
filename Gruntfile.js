@@ -18,7 +18,7 @@ module.exports = function(grunt) {
         dest: 'build/lib.js'
       },
       css: {
-        src: ['client/styles/*.css'],
+        src: ['client/lib/normalize-css/normalize.css', 'client/styles/*.css'],
         dest: 'build/styles.css'
       },
     },
@@ -42,19 +42,14 @@ module.exports = function(grunt) {
     },
 
     jshint: {
-      files: [
-        'Gruntfile.js',
-        'client/**/*.js',
-      ],
       options: {
         force: 'true',
         jshintrc: '.jshintrc',
-        ignores: [
-          'client/lib/**/*.js',
-          'build/**/*.js',
-          'client/*.min.js'
-        ]
-      }
+      },
+      files: [
+        'Gruntfile.js',
+        'client/app/**/*.js',
+      ],
     },
 
     cssmin: {
@@ -81,19 +76,7 @@ module.exports = function(grunt) {
         files: 'client/styles/*.css',
         tasks: ['concat:css', 'cssmin']
       }
-    },
-
-    // shell: {
-    //   prodServer: {
-
-    //     command: 'git push azure master',
-    //     options: {
-    //       stdout: true,
-    //       stderr: true,
-    //       failOnError: true
-    //     }
-    //           }
-    // },
+    }
   });
 
   grunt.loadNpmTasks('grunt-contrib-clean');
@@ -105,18 +88,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-nodemon');
 
-  // grunt.registerTask('server-dev', function (target) {
-  //   var nodemon = grunt.util.spawn({
-  //        cmd: 'grunt',
-  //        grunt: true,
-  //        args: 'nodemon'
-  //   });
-  //   nodemon.stdout.pipe(process.stdout);
-  //   nodemon.stderr.pipe(process.stderr);
-
-  //   grunt.task.run([ 'watch' ]);
-  // });
-
   ////////////////////////////////////////////////////
   // Main grunt tasks
   ////////////////////////////////////////////////////
@@ -125,13 +96,5 @@ module.exports = function(grunt) {
 
   grunt.registerTask('doit', ['test', 'clean', 'concat', 'uglify', 'cssmin']);
 
-  // grunt.registerTask('upload', function(n) {
-  //   if(grunt.option('prod')) {
-  //     grunt.task.run([ 'shell:prodServer' ]);
-  //   } else {
-  //     grunt.task.run([ 'server-dev' ]);
-  //   }
-  // });
-
-  grunt.registerTask('default', ['test', 'doit', 'watch']);
+  grunt.registerTask('default', ['doit', 'watch']);
 };
