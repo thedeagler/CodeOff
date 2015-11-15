@@ -6,7 +6,7 @@ function ($rootScope, $scope, $location, Player, ColorPicker) {
   $scope.username = '';
   $scope.room;
 
-  ColorPicker(
+  ColorPicker.ColorPicker(
     document.getElementById('slide'),
     document.getElementById('picker'),
     function(hex, hsv, rgb) {

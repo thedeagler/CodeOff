@@ -120,7 +120,7 @@ pre {
   text-shadow: 0 0 5px papayawhip !important;
 }
 
-@keyframes blink {  
+@keyframes blink {
   40% { opacity: 0.2; }
 }
 
