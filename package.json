@@ -1,8 +1,8 @@
 {
-  "name": "code-racer",
+  "name": "CodeOff",
   "version": "0.0.0",
-  "description": "l2codefaster",
-  "main": "index.js",
+  "description": "Code Off! is a typing game for programmers. Have fun and type faster all at the same time!",
+  "main": "server.js",
   "dependencies": {
     "body-parser": "^1.14.1",
     "component": "^1.1.0",
@@ -26,12 +26,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/thedeagler/2015-10-mvp.git"
+    "url": "https://github.com/thedeagler/CodeOff.git"
   },
   "author": "thedeagler",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/thedeagler/2015-10-mvp/issues"
+    "url": "https://github.com/thedeagler/CodeOff/issues"
   },
-  "homepage": "https://github.com/thedeagler/2015-10-mvp"
+  "homepage": "https://github.com/thedeagler/CodeOff"
 }
